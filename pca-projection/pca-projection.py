@@ -14,4 +14,4 @@ def pca_projection(X: list, k: int) -> list:
     eigent_values = eigent_values[sorted_indices]
     eigent_vectors = eigent_vectors[:, sorted_indices]
     components = eigent_vectors[:, :k]
-    return np.dot(X_centered, components)
+    return np.matmul(X_centered, components)
