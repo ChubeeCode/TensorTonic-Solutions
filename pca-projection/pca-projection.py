@@ -6,12 +6,11 @@ def pca_projection(X: list, k: int) -> list:
     """
     # Write code here
     X = np.asarray(X)
-    X_mean = np.mean(X, axis = 0)
-    X_centered = X - X_mean
+    X_centered = X - np.mean(X, axis = 0)
     cov_matrix = np.cov(X_centered, rowvar = False)
-    eigent_values, eigent_vectors = np.linalg.eig(cov_matrix)
-    sorted_indices = np.argsort(eigent_values)[::-1]
-    eigent_values = eigent_values[sorted_indices]
-    eigent_vectors = eigent_vectors[:, sorted_indices]
-    components = eigent_vectors[:, :k]
+    eigen_values, eigen_vectors = np.linalg.eig(cov_matrix)
+    sorted_indicies = np.argsort(eigen_values)[::-1]
+    eigen_values = eigen_values[sorted_indicies]
+    eigen_vectors = eigen_vectors[:, sorted_indicies]
+    components = eigen_vectors[:, :k]
     return np.matmul(X_centered, components)
